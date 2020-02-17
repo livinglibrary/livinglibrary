@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" href="../css/bootstrap4.min.css" />
+<link rel="stylesheet" href="../css/resumeDetail.css" />
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script src="../layer/layer.js"></script>
+<script type="text/javascript" src="../js/bootstrap4.min.js"></script>
+<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="../js/resumeDetail.js"></script>
+</head>
+
+<body>
+	<div id="all">
+		<nav class="navbar navbar-expand-md navbar-light">
+			<a class="navbar-brand" href="#">NCHU-LL</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-end"
+				id="collapsibleNavbar">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link" href="/aindex">首页</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">消息  </a>
+							<div class="dropdown-menu" style="padding:0;margin:0;">
+								<div class="card" style="width: 23rem;padding:0;margin:0;">
+								  <div class="card-body" style="padding:0;margin:0;">
+								    <div class="list-group notice">
+									</div>
+								  </div>
+								</div>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/avedio">直播</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link personal" href="#">个人中心</a>
+						</li>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/alogin" id="d_login">登录</a>
+							<a class="nav-link" id="welcome">欢迎您&nbsp;<span id="s_name"></span></a>
+						</li>
+						<li class="nav-item" id="out">
+							<a class="nav-link" id="logout" href="#">退出</a>
+						</li>
+						<li class="nav-item" id="register">
+							<a class="nav-link" href="#">注册</a>
+						</li>
+					</ul>
+			</div>
+		</nav>
+		<div class="container">
+			<span id="d_id" th:text="${res_id}"></span>
+			<div class="showp-head">
+				<h3>
+					<kbd class="category-title">详细</kbd>
+				</h3>
+			</div>
+			<div id="main" style="margin: 20px auto;">
+				<div id="detail" class="row">
+					<div class="article" id="article">
+						<h2 style="text-align: center; ">这是标题</h2>
+						<p class="text-info">来自16046199-张三</p>
+						<hr>
+						<div>
+							<div id="zhengwen">
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="example" style="text-align: center">
+					<ul id="pageLimit"></ul>
+				</div>
+			</div>
+			<div id="message-board">
+				<div id="text-box">
+					<textarea placeholder="写下你的留言......" id="textarea"></textarea>
+					<input type="button" disabled="disabled"
+						style="visibility: hidden;" /> <span>注：提交的留言需要通过审核才能展示。</span> <input
+						type="button" class="btn-info btn" id="send-btn" value="提交留言" />
+				</div>
+				<div id="words-list">
+				</div>
+			</div>
+
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="myModalLabel">请确定预约信息</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="form-group">
+								<label id="stuid">学号：******</label> 
+								<!-- <input type="text" name="ynumber" class="form-control" id="ynumber" placeholder="请输入学号"> -->
+							</div>
+							<div class="form-group">
+								<label id="name">姓名：**</label> 
+								<!-- <input type="text" name="yname" class="form-control" id="yname" placeholder="请输入姓名"> -->
+							</div>
+							
+							<div class="form-group">
+								<label id="guestName">讲座名：####</label> 
+								<!-- <input type="text" name="yname" class="form-control" id="yname" placeholder="请输入姓名"> -->
+							</div>
+							<div class="form-group">
+								<label id="yuyuetime">时间：####-##-## ##-##</label> 
+								<!-- <input type="text" name="yname" class="form-control" id="yname" placeholder="请输入姓名"> -->
+							</div>
+							<div class="form-group">
+								<label id="riot">人数：##</label> 
+								<!-- <input type="text" name="yname" class="form-control" id="yname" placeholder="请输入姓名"> -->
+							</div>
+							<div class="form-group">
+								<label id="status">状态：###</label> 
+								<!-- <input type="text" name="yname" class="form-control" id="yname" placeholder="请输入姓名"> -->
+							</div>
+							<div class="modal-footer">
+								<button type="button" id="btn_submit" class="btn btn-info" data-dismiss="modal">提交</button>
+								<button type="button" id="btn_cancel" class="btn btn-danger">取消预约</button>
+								<button type="button" class="btn btn-outline-dark" data-dismiss="modal">取消</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+		<div id="foot">
+			<hr />
+			<div id="" align="center">
+				<p>Copyright© 南昌航空大学图书馆,All Rights Reserved</p>
+				<p>
+					管理员email：niatliby@163.com Tel：83863778转8016 83953350&nbsp; <span>相关链接:&nbsp;
+						<a href="http://gxszk.nchu.edu.cn/">省高校思政网</a>&nbsp; <a
+						href="http://tsg.jxnu.edu.cn/tgw/">省高校团工委</a>
+					</span>
+				</p>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

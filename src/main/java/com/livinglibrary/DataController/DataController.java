@@ -1,18 +1,13 @@
 package com.livinglibrary.DataController;
 
-import java.io.IOException;
-import java.util.List;
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.apache.http.HttpException;
-import org.apache.http.client.ClientProtocolException;
+import com.livinglibrary.PageController.ExecptionController;
+import com.livinglibrary.po.*;
+import com.livinglibrary.service.livingService;
+import com.livinglibrary.util.FileUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,21 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.livinglibrary.PageController.ExecptionController;
-import com.livinglibrary.po.Boardmessage;
-import com.livinglibrary.po.Carousel;
-import com.livinglibrary.po.Guest;
-import com.livinglibrary.po.Guestcomment;
-import com.livinglibrary.po.Guesttype;
-import com.livinglibrary.po.MyGuest;
-import com.livinglibrary.po.PageList;
-import com.livinglibrary.po.StuYuyue;
-import com.livinglibrary.po.Systemset;
-import com.livinglibrary.po.User;
-import com.livinglibrary.po.Vedio;
-import com.livinglibrary.po.Vediotype;
-import com.livinglibrary.service.livingService;
-import com.livinglibrary.util.FileUtil;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 
@@ -143,7 +128,7 @@ public class DataController extends ExecptionController{
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(stuid,pwd);
         //进行验证，这里可以捕获异常，然后返回对应信息
-        String name;
+        String name = null;
         try {
         	subject.login(usernamePasswordToken);
         	name = service.loginFor(stuid, pwd, type);
@@ -322,5 +307,6 @@ public class DataController extends ExecptionController{
 	public List<Vediotype> getVedioType(){
 		return service.getVedioType();
 	}
-	
+
+
 }

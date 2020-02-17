@@ -24,8 +24,12 @@ public class MyShiroRealm extends AuthorizingRealm{
 
 	@Resource
 	ShiroService shiroService;
-	
-	
+
+    /**
+     * 执行授权逻辑
+     * @param principals
+     * @return
+     */
 	@Override	
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		

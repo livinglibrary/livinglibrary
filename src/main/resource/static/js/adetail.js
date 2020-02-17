@@ -12,15 +12,13 @@ $(function(){
         	var state;
         	 var time=Date.parse(new Date());
      	    var start=Date.parse(data.begintime);    	   
-     	    var end=Date.parse(data.endtime); 
+     	    var end=Date.parse(data.endtime);
         	if(data.isshow==0 && start>time){
         		state = "预约";
         	}else{
         		state="回顾";
         	}
-        	   
-        	    
-        	    console.log(start);	    
+
                 $('#detail').append('<div id="left-img" class="col-sm-4 col-md-4 col-lg-4"><img id="person-img" src="http://10.1.79.22:8056/'+data.guestimg+'" alt="个人相片"></div>'+
                     '<div id="person-info" class="col-sm-8 col-md-8 col-lg-8" align="left"><div id="info-con" class="center"><h2 style="margin-left:30px;color:#999">'+data.guestname+'  '+data.address+'</h2><br /><br />'+
                     '<p style="font-size:20px;color:#333;text-indent:40px;">'+data.summary+'</p>'+

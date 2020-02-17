@@ -1,21 +1,18 @@
 package com.livinglibrary.PageController;
 
-import java.util.Map;
-
-import javax.annotation.Resource;
-
-import org.apache.shiro.authz.annotation.RequiresRoles;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.livinglibrary.po.Guest;
 import com.livinglibrary.po.Pastreview;
 import com.livinglibrary.po.Systemset;
 import com.livinglibrary.service.ManagerService;
 import com.livinglibrary.service.livingService;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import groovy.lang.MetaClassImpl.Index;
+import javax.annotation.Resource;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Map;
 
 @Controller
 public class PageController {
@@ -143,6 +140,26 @@ public class PageController {
 	public String myComment() {
 		return "my-comment";
 	}
-	
+
+	/**
+	 *  简历页面跳转
+	 * @return
+	 */
+	@RequestMapping("/resume")
+	public String perResume(){
+		return "perResume";
+	}
+
+	/**
+	 * 简历详情页面跳转
+	 * @param id
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/resumeDetails")
+	public String resumeDetails(String id,Map<String, Object> map){
+		map.put("res_id",id);
+		return "resumeDetails";
+	}
 	
 }
